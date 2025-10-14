@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -17,9 +18,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth','admin'])->group(function() {
-    Route::get('/test-admin', function(){
-        return view('welcome');
-    });
+    Route::get('/category', [AdminController::class, 'index'])->name('admin.category.add');
+    Route::post('/category', [AdminController::class, 'store'])->name('admin.category.store');
 });
 
 require __DIR__.'/auth.php';
