@@ -68,18 +68,27 @@
             </li>
           </ul>
           <div class="user_option">
-            <a href="{{ route('login') }}">
-              <i class="fa fa-user" aria-hidden="true"></i>
-              <span>
-                Login
-              </span>
-            </a>
-            <a href="{{ route('register') }}">
-              <i class="fa fa-user" aria-hidden="true"></i>
-              <span>
-                Register
-              </span>
-            </a>
+            @if (Auth::check())
+                <a href="{{ route('dashboard') }}">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <span>
+                        Dashboard
+                    </span>
+                </a>
+            @else
+                <a href="{{ route('login') }}">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <span>
+                        Login
+                    </span>
+                    </a>
+                    <a href="{{ route('register') }}">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <span>
+                        Register
+                    </span>
+                </a>
+            @endif
             <a href="">
               <i class="fa fa-shopping-bag" aria-hidden="true"></i>
             </a>
