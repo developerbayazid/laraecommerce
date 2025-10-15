@@ -36,5 +36,22 @@ class AdminController extends Controller
         return redirect()->back()->with('delete-category', 'The category has been deleted successfully!');
     }
 
+    public function edit($id){
+        $category = Category::findOrFail($id);
+        return view('admin.category.update', compact('category'));
+    }
+
+    public function update(Request $request, $id) {
+        $category = Category::findOrFail($id);
+        $validated = $request->validate([
+            'category' => 'required'
+        ],[
+            'category.required' => 'Please enter a category name before submitting.'
+        ]);
+        $category->category = $validated['category'];
+        $category->save();
+        return redirect()->back()->with('update-category', 'The category has been updated successfully!');
+    }
+
 
 }

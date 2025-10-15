@@ -23,7 +23,7 @@
                         <td>{{ $category->category }}</td>
                         <td>
                             <a href={{ route('admin.category.destroy', $category->id) }} class="btn btn-danger">Delete</a>
-                            <a href="" class="btn btn-warning">Edit</a>
+                            <a href={{ route('admin.category.edit', $category->id) }} class="btn btn-warning">Edit</a>
                         </td>
                     </tr>
                 @endforeach

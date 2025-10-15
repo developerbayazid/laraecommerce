@@ -102,9 +102,13 @@
           </div>
         </div>
         <section class="no-padding-top no-padding-bottom">
+
           @yield('dashboard')
           @yield('add-category')
           @yield('view-category')
+          @yield('update-category')
+
+
         </section>
 
         <!-- End of Sections -->
