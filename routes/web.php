@@ -20,6 +20,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth','admin'])->group(function() {
     Route::get('/category', [AdminController::class, 'index'])->name('admin.category.add');
     Route::post('/category', [AdminController::class, 'store'])->name('admin.category.store');
+    Route::get('/categories', [AdminController::class, 'view'])->name('admin.category.view');
+    Route::get('/category/delete/{id}', [AdminController::class, 'destroy'])->name('admin.category.destroy');
 });
 
 require __DIR__.'/auth.php';

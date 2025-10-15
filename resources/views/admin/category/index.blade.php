@@ -8,6 +8,12 @@
             </div>
         @endif
 
+        @error('category')
+            <div class="alert alert-danger" role="alert">
+                <strong>{{$message}}</strong>
+            </div>
+        @enderror
+
         <form action={{ route('admin.category.store') }} method="POST">
             @csrf
             <input type="text" name="category" id="" placeholder="Category name"><br><br>

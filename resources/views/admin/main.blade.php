@@ -88,6 +88,7 @@
                 <li><a href="#category" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Category </a>
                   <ul id="category" class="collapse list-unstyled ">
                     <li><a href={{ route('admin.category.add') }}>Add Category</a></li>
+                    <li><a href={{ route('admin.category.view') }}>Categories</a></li>
                   </ul>
                 </li>
 
@@ -103,6 +104,7 @@
         <section class="no-padding-top no-padding-bottom">
           @yield('dashboard')
           @yield('add-category')
+          @yield('view-category')
         </section>
 
         <!-- End of Sections -->
