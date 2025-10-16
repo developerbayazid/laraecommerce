@@ -36,8 +36,8 @@ class ProductController extends Controller
 
         if ($image) {
             $imageName = time() . '.'.$image->getClientOriginalExtension();
-            $imagePath = $image->storeAs('products', $imageName, 'public');
-            $product->product_image = $imagePath;
+            $image->move('products', $imageName);
+            $product->product_image = $imageName;
         }
 
         $product->save();
