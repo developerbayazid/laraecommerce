@@ -84,15 +84,40 @@
         </div>
         <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
         <ul class="list-unstyled">
-                <li class="active"><a href={{ route('dashboard') }}> <i class="icon-home"></i>Home </a></li>
-                <li><a href="#category" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Category </a>
-                  <ul id="category" class="collapse list-unstyled ">
-                    <li><a href={{ route('admin.category.add') }}>Add Category</a></li>
-                    <li><a href={{ route('admin.category.view') }}>Categories</a></li>
-                  </ul>
-                </li>
+            <li class="active">
+                <a href={{ route('dashboard') }}>
+                    <i class="icon-home"></i>Home
+                </a>
+            </li>
+            <li>
+                <a href="#category" aria-expanded="false" data-toggle="collapse">
+                    <i class="icon-windows"></i>Category
+                </a>
+                <ul id="category" class="collapse list-unstyled ">
+                    <li>
+                        <a href={{ route('admin.category.add') }}>Add Category</a>
+                    </li>
+                    <li>
+                        <a href={{ route('admin.category.view') }}>Categories</a>
+                    </li>
+                </ul>
+            </li>
 
-        </ul><span class="heading">Extras</span>
+             <li>
+                <a href="#product" aria-expanded="false" data-toggle="collapse">
+                    <i class="icon-windows"></i>Products
+                </a>
+                <ul id="product" class="collapse list-unstyled ">
+                    <li>
+                        <a href={{ route('admin.product.add') }}>Add Product</a>
+                    </li>
+                    <li>
+                        <a href={{ route('admin.category.view') }}>Products</a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
       </nav>
       <!-- Sidebar Navigation end-->
       <div class="page-content">
@@ -107,6 +132,9 @@
           @yield('add-category')
           @yield('view-category')
           @yield('update-category')
+
+          @yield('add-product')
+
 
 
         </section>
