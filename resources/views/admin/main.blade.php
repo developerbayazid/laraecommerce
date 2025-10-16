@@ -84,14 +84,14 @@
         </div>
         <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
         <ul class="list-unstyled">
-            <li class="active">
+            <li class="{{ request()->path() === 'dashboard' ? 'active' : '' }}">
                 <a href={{ route('dashboard') }}>
                     <i class="icon-home"></i>Home
                 </a>
             </li>
-            <li>
+            <li class="{{ request()->is('category*') || request()->is('categories*') ? 'active' : '' }}">
                 <a href="#category" aria-expanded="false" data-toggle="collapse">
-                    <i class="icon-windows"></i>Category
+                    <i class="icon-windows"></i>Categories
                 </a>
                 <ul id="category" class="collapse list-unstyled ">
                     <li>
@@ -103,7 +103,7 @@
                 </ul>
             </li>
 
-             <li>
+             <li class="{{ request()->is('product*') ? 'active' : '' }}">
                 <a href="#product" aria-expanded="false" data-toggle="collapse">
                     <i class="icon-windows"></i>Products
                 </a>
@@ -135,6 +135,7 @@
 
           @yield('add-product')
           @yield('view-product')
+          @yield('update-product')
 
 
 

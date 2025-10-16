@@ -61,4 +61,41 @@ class ProductController extends Controller
         return redirect()->back()->with('delete-product', $product->product_title .' has been deleted successfully!');
     }
 
+    public function edit($id){
+        $product = Product::findOrFail($id);
+        $categories = Category::all();
+        return view('admin.product.update', compact('product', 'categories'));
+    }
+
+    public function update(Request $request, $id) {
+        $validated = $request->validate([
+            'name'        => 'required',
+            'category'    => 'required',
+            'price'       => 'required|numeric|between:1,99999999999',
+            'quantity'    => 'required|numeric|min:1',
+            'description' => 'required',
+            'image'       => 'image|mimes:jpg,jpeg,png|max:2048'
+        ]);
+
+        $product = Product::findOrFail($id);
+
+        $product->product_title       = $validated['name'];
+        $product->product_category    = $validated['category'];
+        $product->product_price       = $validated['price'];
+        $product->product_quantity    = $validated['quantity'];
+        $product->product_description = $validated['description'];
+
+        $image = $validated['image'] ?? '';
+
+        if ($image) {
+            $imageName = time() . '.'.$image->getClientOriginalExtension();
+            $image->move('products', $imageName);
+            $product->product_image = $imageName;
+        }
+
+        $product->save();
+
+        return redirect()->back()->with('update-product', 'The product has been updated successfully!');
+    }
+
 }
