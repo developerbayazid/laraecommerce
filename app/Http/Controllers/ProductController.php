@@ -44,4 +44,21 @@ class ProductController extends Controller
 
         return redirect()->back()->with('add-product', 'The product has been added successfully!');
     }
+
+    public function view() {
+
+        $products = Product::paginate(12);
+        return view('admin.product.view', compact('products'));
+    }
+
+    public function destroy($id){
+        $product = Product::findOrFail($id);
+        $path = public_path('products/'. $product->product_image);
+        if (file_exists($path)) {
+            unlink($path);
+        }
+        $product->delete();
+        return redirect()->back()->with('delete-product', $product->product_title .' has been deleted successfully!');
+    }
+
 }

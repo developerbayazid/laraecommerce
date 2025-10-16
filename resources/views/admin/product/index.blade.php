@@ -51,7 +51,7 @@
 
                     <!-- Price -->
                     <div class="mb-3">
-                        <label for="productPrice" class="form-label">Price</label>
+                        <label for="productPrice" class="form-label">Price($)</label>
                         <input type="number" class="form-control" id="productPrice" name="price" value="{{ old('price') }}" placeholder="Enter price">
                     </div>
 

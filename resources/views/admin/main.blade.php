@@ -98,7 +98,7 @@
                         <a href={{ route('admin.category.add') }}>Add Category</a>
                     </li>
                     <li>
-                        <a href={{ route('admin.category.view') }}>Categories</a>
+                        <a href={{ route('admin.category.view') }}>View Category</a>
                     </li>
                 </ul>
             </li>
@@ -112,7 +112,7 @@
                         <a href={{ route('admin.product.add') }}>Add Product</a>
                     </li>
                     <li>
-                        <a href={{ route('admin.category.view') }}>Products</a>
+                        <a href={{ route('admin.product.view') }}>View Product</a>
                     </li>
                 </ul>
             </li>
@@ -134,6 +134,7 @@
           @yield('update-category')
 
           @yield('add-product')
+          @yield('view-product')
 
 
 
