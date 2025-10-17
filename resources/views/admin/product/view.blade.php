@@ -3,6 +3,18 @@
 
 @section('view-product')
     <div class="container-fluid">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <h5 class="card-title mb-4 text-secondary">Search Products</h5>
+
+                <form action="{{ route('admin.product.search') }}" method="POST" class="d-flex align-items-center gap-2">
+                    @csrf
+                    <input type="text" name="search" value="{{ $search ?? '' }}" class="form-control" placeholder="Search by product name...">
+                    <button type="submit" class="btn btn-primary px-4">Search</button>
+                </form>
+            </div>
+        </div>
+
         @if (session('delete-product'))
             <div class="alert alert-success" role="alert">
                 <strong>{{session('delete-product')}}</strong>

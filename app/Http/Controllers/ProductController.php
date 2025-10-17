@@ -14,7 +14,6 @@ class ProductController extends Controller
     }
 
     public function store(Request $request) {
-
         $validated = $request->validate([
             'name'        => 'required',
             'category'    => 'required',
@@ -47,7 +46,7 @@ class ProductController extends Controller
 
     public function view() {
 
-        $products = Product::paginate(12);
+        $products = Product::paginate(6);
         return view('admin.product.view', compact('products'));
     }
 
@@ -96,6 +95,22 @@ class ProductController extends Controller
         $product->save();
 
         return redirect()->back()->with('update-product', 'The product has been updated successfully!');
+    }
+
+    public function search(Request $request) {
+
+        $search = $request->search;
+
+        $products = Product::where('product_title', 'LIKE', '%' . $search . '%')
+            ->orWhere('product_description', 'LIKE', '%' . $search . '%')
+            ->orWhere('product_category', 'LIKE', '%' . $search . '%')
+            ->orWhere('product_price', 'LIKE', '%' . $search . '%')
+            ->orWhere('product_quantity', 'LIKE', '%' . $search . '%')
+            ->orWhere('id', 'LIKE', '%' . $search . '%')
+            ->orWhere('created_at', 'LIKE', '%' . $search . '%')->paginate(6);
+
+
+        return view('admin.product.view', compact('products', 'search'));
     }
 
 }
