@@ -113,5 +113,16 @@ class ProductController extends Controller
         return view('admin.product.view', compact('products', 'search'));
     }
 
+    public function shop() {
+        $products = Product::paginate(4);
+        return view('frontend.product.shop', compact('products'));
+    }
+
+    public function single_product($id) {
+        $product = Product::findOrFail($id);
+        $products = Product::latest()->take(4)->get();
+        return view('frontend.product.single', compact('product', 'products'));
+    }
+
 
 }
