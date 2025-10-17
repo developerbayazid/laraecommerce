@@ -1,6 +1,4 @@
-@extends('admin.main')
-
-@section('add-product')
+<x-admin.main>
 
     <div class="container py-5">
         @if(session('add-product'))
@@ -81,4 +79,4 @@
             </div>
         </div>
     </div>
-@endsection
+</x-admin.main>

@@ -1,8 +1,6 @@
-@extends('admin.main')
-
 <base href="/public">
 
-@section('update-category')
+<x-admin.main>
     <div class="container-fluid">
         @if(session('update-category'))
             <div class="alert alert-success" role="alert">
@@ -23,4 +21,4 @@
             <button class="bg-white pt-2 pb-2 px-5" type="submit">Update Category</button>
         </form>
     </div>
-@endsection
+</x-admin.main>

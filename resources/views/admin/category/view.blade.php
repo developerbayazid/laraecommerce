@@ -1,7 +1,4 @@
-@extends('admin.main')
-
-
-@section('view-category')
+<x-admin.main>
     <div class="container-fluid">
         @if (session('delete-category'))
             <div class="alert alert-success" role="alert">
@@ -30,4 +27,4 @@
             </tbody>
         </table>
     </div>
-@endsection
+</x-admin.main>

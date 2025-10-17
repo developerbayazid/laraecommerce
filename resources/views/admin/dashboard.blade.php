@@ -1,7 +1,4 @@
-@extends('admin.main')
-
-
-@section('dashboard')
+<x-admin.main>
     <div class="container-fluid">
     <div class="row">
         <div class="col-md-3 col-sm-6">
@@ -58,4 +55,4 @@
         </div>
     </div>
     </div>
-@endsection
+</x-admin.main>

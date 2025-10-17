@@ -1,6 +1,4 @@
-@extends('admin.main')
-
-@section('add-category')
+<x-admin.main>
     <div class="container-fluid">
         @if(session('category-message'))
             <div class="alert alert-success" role="alert">
@@ -20,4 +18,4 @@
             <button class="bg-white pt-2 pb-2 px-5" type="submit">Add Category</button>
         </form>
     </div>
-@endsection
+</x-admin.main>

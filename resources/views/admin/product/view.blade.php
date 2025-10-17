@@ -1,7 +1,4 @@
-@extends('admin.main')
-
-
-@section('view-product')
+<x-admin.main>
     <div class="container-fluid">
         <div class="card shadow-sm border-0">
             <div class="card-body">
@@ -57,4 +54,4 @@
             </div>
         </table>
     </div>
-@endsection
+</x-admin.main>

@@ -1,7 +1,5 @@
-@extends('admin.main')
 <base href="/public">
-
-@section('update-product')
+<x-admin.main>
 
     <div class="container py-5">
         @if(session('update-product'))
@@ -86,4 +84,4 @@
             </div>
         </div>
     </div>
-@endsection
+</x-admin.main>
