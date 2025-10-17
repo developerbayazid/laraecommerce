@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/shop', [HomeController::class, 'shop'])->name('shop');
-Route::get('/product/{id}', [ProductController::class, 'single_product'])->name('frontend.product.single');
+Route::get('/product/{id}', [HomeController::class, 'single_product'])->name('frontend.product.single');
 
 Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 

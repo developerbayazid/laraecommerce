@@ -99,47 +99,43 @@
       </div>
     </div>
 
-    <!-- Related Products -->
-    <div class="mt-5">
-      <h4 class="mb-4">Related Products</h4>
-      <div class="row">
-        <div class="col-md-3 col-sm-6 related-product">
-          <div class="card border-0 shadow-sm">
-            <img src="{{ asset('products/' . $product->product_image) }}" class="card-img-top" alt="">
-            <div class="card-body text-center">
-              <h6>{{ $product->product_title }}</h6>
-              <p class="text-primary">${{ $product->product_price }}</p>
-            </div>
-          </div>
+    <!-- Latest Products -->
+    <div class="container shop_section layout_padding">
+        <div class="mt-5">
+        <h4 class="mb-4">Latest Products</h4>
+        <div class="row">
+            @foreach ($products as $product)
+
+                <div class="col-sm-6 col-md-4 col-lg-3">
+
+                    <div class="box">
+                        <a href="{{ route('frontend.product.single', $product->id) }}">
+                        <div class="img-box">
+                            <img src="{{ asset('products/' . $product->product_image) }}" alt="">
+                        </div>
+                        <div class="detail-box">
+                            <h6>
+                            {{ $product->product_title }}
+                            </h6>
+                            <h6>
+                            Price
+                            <span>
+                                ${{ $product->product_price }}
+                            </span>
+                            </h6>
+                        </div>
+                        <div class="new">
+                            <span>
+                            New
+                            </span>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+
+            @endforeach
         </div>
-        <div class="col-md-3 col-sm-6 related-product">
-          <div class="card border-0 shadow-sm">
-            <img src="{{ asset('products/' . $product->product_image) }}" class="card-img-top" alt="">
-            <div class="card-body text-center">
-              <h6>{{ $product->product_title }}</h6>
-              <p class="text-primary">${{ $product->product_price }}</p>
-            </div>
-          </div>
         </div>
-        <div class="col-md-3 col-sm-6 related-product">
-          <div class="card border-0 shadow-sm">
-            <img src="{{ asset('products/' . $product->product_image) }}" class="card-img-top" alt="">
-            <div class="card-body text-center">
-              <h6>{{ $product->product_title }}</h6>
-              <p class="text-primary">${{ $product->product_price }}</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6 related-product">
-          <div class="card border-0 shadow-sm">
-            <img src="{{ asset('products/' . $product->product_image) }}" class="card-img-top" alt="">
-            <div class="card-body text-center">
-              <h6>{{ $product->product_title }}</h6>
-              <p class="text-primary">${{ $product->product_price }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
   </div>

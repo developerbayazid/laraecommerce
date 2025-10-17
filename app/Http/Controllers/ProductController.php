@@ -114,9 +114,4 @@ class ProductController extends Controller
     }
 
 
-    public function single_product($id) {
-        $product = Product::findOrFail($id);
-        return view('frontend.product.single', compact('product'));
-    }
-
 }
