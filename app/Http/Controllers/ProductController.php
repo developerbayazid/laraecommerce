@@ -113,4 +113,10 @@ class ProductController extends Controller
         return view('admin.product.view', compact('products', 'search'));
     }
 
+
+    public function single_product($id) {
+        $product = Product::findOrFail($id);
+        return view('frontend.product.single', compact('product'));
+    }
+
 }

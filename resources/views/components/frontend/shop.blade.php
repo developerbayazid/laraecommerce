@@ -10,7 +10,7 @@
 
             <div class="col-sm-6 col-md-4 col-lg-3">
                 <div class="box">
-                    <a href="">
+                    <a href="{{ route('frontend.product.single', $product->id) }}">
                     <div class="img-box">
                         <img src="{{ asset('products/' . $product->product_image) }}" alt="">
                     </div>
