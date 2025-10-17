@@ -7,7 +7,7 @@
 
   <!-- shop section -->
 
-  <x-frontend.shop :products="$products" />
+  <x-frontend.products :products="$products" />
 
   <!-- end shop section -->
 
