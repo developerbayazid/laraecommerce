@@ -1,4 +1,4 @@
-<x-frontend.header />
+<x-frontend.header :cartCount="$cartCount" />
 <x-frontend.hero />
 
 

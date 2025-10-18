@@ -54,8 +54,12 @@
                     </span>
                 </a>
             @endif
-            <a href="">
-              <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+            <a href="{{ route('cart.index') }}">
+              <i class="fa fa-shopping-bag" aria-hidden="true">
+                <strong>
+                    ({{ $cartCount ?? '0' }})
+                </strong>
+              </i>
             </a>
             <form class="form-inline ">
               <button class="btn nav_search-btn" type="submit">

@@ -1,4 +1,4 @@
-<x-frontend.header />
+<x-frontend.header :cartCount="$cartCount" />
 
 <section class="shop_section layout_padding">
     <div class="container">

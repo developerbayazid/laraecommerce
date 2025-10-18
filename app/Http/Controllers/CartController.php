@@ -10,7 +10,19 @@ use Illuminate\Support\Facades\Auth;
 class CartController extends Controller
 {
     public function index(){
-        return view('frontend.cart.index');
+
+        $products = Cart::with('product')->where('user_id', Auth::id())->get()->pluck('product');
+
+        $subtotal = 0;
+        foreach ($products as $product) {
+            $subtotal = $product->product_price + $subtotal;
+        }
+
+        $cartCount = '';
+        if (Auth::check()) {
+            $cartCount = Auth::user()->carts()->count();
+        }
+        return view('frontend.cart.index', ['cartCount' => $cartCount, 'products' => $products, 'subtotal' => $subtotal]);
     }
 
     public function store($id){

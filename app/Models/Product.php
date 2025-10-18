@@ -10,4 +10,8 @@ class Product extends Model
             'product_title', 'product_category', 'product_price', 'product_quantity', 'product_description', 'product_image'
     ];
 
+    public function carts() {
+        $this->hasOne(Cart::class);
+    }
+
 }

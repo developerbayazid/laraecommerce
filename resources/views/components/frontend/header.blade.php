@@ -34,6 +34,6 @@
   <div class="hero_area">
     <!-- header section strats -->
     <header class="header_section">
-      <x-frontend.nav />
+      <x-frontend.nav :cartCount="$cartCount" />
     </header>
     <!-- end header section -->

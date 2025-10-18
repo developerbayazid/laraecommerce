@@ -1,5 +1,5 @@
 <base href="/public">
-<x-frontend.header />
+<x-frontend.header :cartCount="$cartCount" />
   <!-- Product Section -->
   <div class="container py-5">
     <div class="row py-5">

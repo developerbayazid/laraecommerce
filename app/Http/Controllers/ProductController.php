@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -110,18 +111,27 @@ class ProductController extends Controller
             ->orWhere('created_at', 'LIKE', '%' . $search . '%')->paginate(6);
 
 
-        return view('admin.product.view', compact('products', 'search'));
+        return view('admin.product.view', ['products' => $products, 'search' => $search]);
     }
 
     public function shop() {
         $products = Product::paginate(4);
-        return view('frontend.product.shop', compact('products'));
+
+        $cartCount = '';
+        if (Auth::check()) {
+            $cartCount = Auth::user()->carts()->count();
+        }
+        return view('frontend.product.shop', ['products' => $products, 'cartCount' => $cartCount]);
     }
 
     public function single_product($id) {
         $product = Product::findOrFail($id);
         $products = Product::latest()->take(4)->get();
-        return view('frontend.product.single', compact('product', 'products'));
+        $cartCount = '';
+        if (Auth::check()) {
+            $cartCount = Auth::user()->carts()->count();
+        }
+        return view('frontend.product.single', ['product' => $product, 'products' => $products, 'cartCount' => $cartCount]);
     }
 
 

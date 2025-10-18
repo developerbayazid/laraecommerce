@@ -2,13 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Product;
-
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     public function index() {
         $products = Product::latest()->take(4)->get();
-        return view('frontend.index', compact('products'));
+
+        $cartCount = '';
+        if (Auth::check()) {
+            $cartCount = Auth::user()->carts()->count();
+        }
+
+        return view('frontend.index', ['products' => $products, 'cartCount' => $cartCount]);
     }
 }
