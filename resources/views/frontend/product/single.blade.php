@@ -36,9 +36,15 @@
             <label for="quantity" class="form-label">Quantity</label>
             <input type="number" id="quantity" class="form-control w-25" min="1" value="1">
           </div>
-          <button type="submit" class="btn btn-primary px-4 me-2">Add to Cart</button>
-          <button type="button" class="btn btn-outline-secondary px-4">Buy Now</button>
+          <a href="{{ route('cart.store', $product->id) }}" type="submit" class="btn btn-primary px-4 me-2">Add to Cart</a>
+          <a href="{{ route('cart.store', $product->id) }}" type="button" class="btn btn-outline-secondary px-4">Buy Now</a>
         </form>
+
+        @if(session('product-cart'))
+            <div class="alert alert-success" role="alert">
+                <strong>{{session('product-cart')}}</strong>
+            </div>
+        @endif
 
         <hr class="my-4">
         <ul class="list-unstyled">

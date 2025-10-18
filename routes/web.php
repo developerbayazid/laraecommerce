@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/shop', [ProductController::class, 'shop'])->name('shop');
 Route::get('/product/{id}', [ProductController::class, 'single_product'])->name('frontend.product.single');
+
+Route::get('/cart', [CartController::class, 'index'])->middleware(['auth', 'verified'])->name('cart.index');
+Route::get('/cart/{id}', [CartController::class, 'store'])->middleware(['auth', 'verified'])->name('cart.store');
 
 Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
