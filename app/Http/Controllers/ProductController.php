@@ -115,7 +115,7 @@ class ProductController extends Controller
     }
 
     public function shop() {
-        $products = Product::paginate(4);
+        $products = Product::paginate(8);
 
         $cartCount = '';
         if (Auth::check()) {

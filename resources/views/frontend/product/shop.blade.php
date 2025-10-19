@@ -4,9 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="box">
-                    {{ $products->links('pagination::bootstrap-5') }}
-                </div>
+                {{ $products->links('pagination::bootstrap-5') }}
 
             </div>
         </div>

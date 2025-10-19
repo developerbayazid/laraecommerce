@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -12,11 +13,22 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/shop', [ProductController::class, 'shop'])->name('shop');
 Route::get('/product/{id}', [ProductController::class, 'single_product'])->name('frontend.product.single');
 
-Route::get('/cart', [CartController::class, 'index'])->middleware(['auth', 'verified'])->name('cart.index');
-Route::get('/cart/{id}', [CartController::class, 'store'])->middleware(['auth', 'verified'])->name('cart.store');
-Route::get('/cart/delete/{id}', [CartController::class, 'destroy'])->middleware(['auth', 'verified'])->name('cart.destroy');
 
-Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware(['auth', 'verified'])->group(function(){
+
+    Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
+
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::get('/cart/{id}', [CartController::class, 'store'])->name('cart.store');
+    Route::get('/cart/delete/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+
+
+
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

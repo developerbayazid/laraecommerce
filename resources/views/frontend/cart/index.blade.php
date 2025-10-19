@@ -64,8 +64,8 @@
               <span>${{ $subtotal + 10 }}</span>
             </div>
 
-            <button class="btn btn-primary w-100 mb-2">Proceed to Checkout</button>
-            <a href="#" class="btn btn-outline-secondary w-100">Continue Shopping</a>
+            <a href="{{ route('checkout.index') }}" class="btn btn-primary w-100 mb-2">Proceed to Checkout</a>
+            <a href="{{ route('checkout.index') }}" class="btn btn-outline-secondary w-100">Continue Shopping</a>
           </div>
         </div>
       </div>
