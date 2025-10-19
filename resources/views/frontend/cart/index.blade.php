@@ -6,23 +6,35 @@
       <div class="col-lg-8 mb-4">
         <div class="card shadow-sm border-0">
           <div class="card-body">
-            <h5 class="card-title mb-4">Cart Items ({{ $products ? $products->count() : '0' }})</h5>
+             @if(session('product-remove'))
+                <div class="alert alert-success" role="alert">
+                    <strong>{{session('product-remove')}}</strong>
+                </div>
+            @endif
+            <h5 class="card-title mb-4">Cart Items ({{ $carts ? $carts->count() : '0' }})</h5>
+
+            @php
+                $subtotal = 0;
+            @endphp
 
             <!-- Cart Item 1 -->
-            @foreach ($products as $product)
+            @foreach ($carts as $cart)
+                @php
+                    $subtotal = $cart->product->product_price + $subtotal
+                @endphp
                 <div class="d-flex align-items-center mb-4 border-bottom pb-3">
-                    <img width="50px" height="50px" src="{{ asset('products/'. $product->product_image) }}" alt="Product" class="rounded me-3">
+                    <img width="50px" height="50px" src="{{ asset('products/'. $cart->product->product_image) }}" alt="Product" class="rounded me-3">
                     <div class="flex-grow-1">
                         <h6 class="mb-1">
-                            <a href="{{ route('frontend.product.single', $product->id) }}">{{ $product->product_title }}</a>
+                            <a href="{{ route('frontend.product.single', $cart->product->id) }}">{{ $cart->product->product_title }}</a>
                         </h6>
-                        <p class="mb-0 text-muted small">Category: {{ $product->product_category }}</p>
+                        <p class="mb-0 text-muted small">Category: {{ $cart->product->product_category }}</p>
                     </div>
                     <div class="text-end">
-                        <p class="mb-1 fw-bold">${{ $product->product_price }}</p>
+                        <p class="mb-1 fw-bold">${{ $cart->product->product_price }}</p>
                         <div class="d-flex align-items-center justify-content-end">
                             <input type="number" min="1" value="1" class="form-control form-control-sm w-25 me-2 text-center">
-                            <button class="btn btn-outline-danger btn-sm">Remove</button>
+                            <a href="{{ route('cart.destroy', $cart->id) }}" class="btn btn-outline-danger btn-sm">Remove</a>
                         </div>
                     </div>
                 </div>

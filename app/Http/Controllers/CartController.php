@@ -11,18 +11,13 @@ class CartController extends Controller
 {
     public function index(){
 
-        $products = Cart::with('product')->where('user_id', Auth::id())->get()->pluck('product');
-
-        $subtotal = 0;
-        foreach ($products as $product) {
-            $subtotal = $product->product_price + $subtotal;
-        }
+        $carts = Cart::where('user_id', Auth::id())->get();
 
         $cartCount = '';
         if (Auth::check()) {
             $cartCount = Auth::user()->carts()->count();
         }
-        return view('frontend.cart.index', ['cartCount' => $cartCount, 'products' => $products, 'subtotal' => $subtotal]);
+        return view('frontend.cart.index', ['cartCount' => $cartCount, 'carts' => $carts]);
     }
 
     public function store($id){
@@ -34,5 +29,11 @@ class CartController extends Controller
         $cart->save();
 
         return redirect()->back()->with('product-cart', 'Product has been added to the cart successfully!');
+    }
+
+    public function destroy($id){
+        $cart = Cart::findOrFail($id);
+        $cart->delete();
+        return redirect()->back()->with('product-remove', 'Product has been removed successfully from cart!');
     }
 }

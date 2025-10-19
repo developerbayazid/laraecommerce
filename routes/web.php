@@ -14,6 +14,7 @@ Route::get('/product/{id}', [ProductController::class, 'single_product'])->name(
 
 Route::get('/cart', [CartController::class, 'index'])->middleware(['auth', 'verified'])->name('cart.index');
 Route::get('/cart/{id}', [CartController::class, 'store'])->middleware(['auth', 'verified'])->name('cart.store');
+Route::get('/cart/delete/{id}', [CartController::class, 'destroy'])->middleware(['auth', 'verified'])->name('cart.destroy');
 
 Route::get('/dashboard', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
