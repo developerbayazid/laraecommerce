@@ -3,7 +3,7 @@
 
 
 <div class="container py-5">
-  <form action="{{ route('checkout.store') }}" method="POST">
+  <form action="{{ route('order.store') }}" method="POST">
     @csrf
 
     <div class="row g-4">
@@ -11,6 +11,18 @@
       <!-- Billing Details -->
       <div class="col-lg-7">
         <div class="card shadow-sm">
+            @if(session('order-successful'))
+                <div class="alert alert-success" role="alert">
+                    <strong>{{session('order-successful')}}</strong>
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger" role="alert">
+                    @foreach ($errors->all() as $error)
+                        <p><strong>{{ $error }}</strong></p>
+                    @endforeach
+                </div>
+            @endif
           <div class="card-header">
             <h4 class="mb-0 text-primary">Shipping Information</h4>
           </div>
@@ -99,6 +111,11 @@
               <label class="form-check-label" for="bkash">bKash / Nagad</label>
             </div>
 
+            @foreach ($carts as $cart)
+                <input type="hidden" name="items[]" value="{{ $cart }}">
+            @endforeach
+
+            <input type="hidden" name="total" value="{{ $subtotal + 10 }}">
             <hr>
             <button type="submit" class="btn btn-primary w-100 py-2 fs-5 mt-3">Order Now</button>
           </div>

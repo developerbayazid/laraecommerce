@@ -37,7 +37,7 @@
             <input type="number" id="quantity" class="form-control w-25" min="1" value="1">
           </div>
           <a href="{{ route('cart.store', $product->id) }}" type="submit" class="btn btn-primary px-4 me-2">Add to Cart</a>
-          <a href="{{ route('cart.store', $product->id) }}" type="button" class="btn btn-outline-secondary px-4">Buy Now</a>
+          <a href="{{ route('checkout.index') }}" type="button" class="btn btn-outline-secondary px-4">Buy Now</a>
         </form>
 
         @if(session('product-cart'))

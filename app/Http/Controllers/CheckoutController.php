@@ -20,7 +20,5 @@ class CheckoutController extends Controller
         return view('frontend.checkout.index', ['cartCount' => $cartCount, 'carts' => $carts]);
     }
 
-    public function store(Request $request) {
-        dd($request);
-    }
+
 }

@@ -10,25 +10,25 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav  ">
-            <li class="nav-item active">
+            <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
               <a class="nav-link" href="{{ route('home') }}">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {{ request()->is('shop') ? 'active' : '' }}">
               <a class="nav-link" href="{{ route('shop') }}">
                 Shop
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {{ request()->is('why-us') ? 'active' : '' }}">
               <a class="nav-link" href="why.html">
                 Why Us
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {{ request()->is('testimonial') ? 'active' : '' }}">
               <a class="nav-link" href="testimonial.html">
                 Testimonial
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {{ request()->is('contact') ? 'active' : '' }}">
               <a class="nav-link" href="contact.html">Contact Us</a>
             </li>
           </ul>
