@@ -26,7 +26,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
 
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::post('/checkout', [OrderController::class, 'store'])->name('order.store');
-
+    Route::get('/order', [OrderController::class, 'index'])->name('order.index');
 
 
 });

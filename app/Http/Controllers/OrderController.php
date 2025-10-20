@@ -6,11 +6,26 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItems;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
+
+    public function index() {
+        $orders = Order::where('user_id', Auth::id())->with('items.product')->get();
+
+        foreach ($orders as $order) {
+            foreach ($order->items as $item) {
+                dump($item->product->product_title);
+            }
+        }
+
+        return view('admin.order.index', ['orders' => $orders]);
+    }
+
+
     public function store(Request $request) {
 
         $validated = $request->validate([
@@ -57,4 +72,5 @@ class OrderController extends Controller
         return redirect()->back()->with('order-successful', 'The order has been successfully done!');
 
     }
+
 }

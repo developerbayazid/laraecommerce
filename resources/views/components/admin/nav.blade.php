@@ -28,7 +28,7 @@
                 </ul>
             </li>
 
-             <li class="{{ request()->is('product*') ? 'active' : '' }}">
+            <li class="{{ request()->is('product*') ? 'active' : '' }}">
                 <a href="#product" aria-expanded="false" data-toggle="collapse">
                     <i class="icon-windows"></i>Products
                 </a>
@@ -38,6 +38,17 @@
                     </li>
                     <li>
                         <a href={{ route('admin.product.view') }}>View Product</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="{{ request()->is('order*') ? 'active' : '' }}">
+                <a href="#order" aria-expanded="false" data-toggle="collapse">
+                    <i class="icon-windows"></i>Orders
+                </a>
+                <ul id="order" class="collapse list-unstyled ">
+                    <li>
+                        <a href={{ route('order.index') }}>View Order</a>
                     </li>
                 </ul>
             </li>
