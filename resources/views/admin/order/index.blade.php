@@ -1,8 +1,8 @@
 <x-admin.main>
     <div class="container-fluid">
-        @if (session('delete-category'))
+        @if (session('delete-order'))
             <div class="alert alert-success" role="alert">
-                <strong>{{session('delete-category')}}</strong>
+                <strong>{{session('delete-order')}}</strong>
             </div>
         @endif
         <table class="table table-bordered table-striped">
@@ -37,7 +37,7 @@
                         <td>
                             <a href="{{ route('order.view', $order->id) }}" class="btn btn-success">View</a>
                             <a href="" class="btn btn-warning">Edit</a>
-                            <a href="" class="btn btn-danger">Delete</a>
+                            <a href="{{ route('order.destroy', $order->id) }}" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                 @endforeach

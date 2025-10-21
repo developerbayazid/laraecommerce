@@ -73,4 +73,10 @@ class OrderController extends Controller
         return view('admin.order.view', ['order' => $order]);
     }
 
+    public function destroy($id){
+        $order = Order::findOrFail($id);
+        $order->delete();
+        return redirect()->back()->with('delete-order', 'The order has been deleted successfully!');
+    }
+
 }
