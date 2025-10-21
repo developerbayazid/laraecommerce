@@ -16,12 +16,6 @@ class OrderController extends Controller
     public function index() {
         $orders = Order::where('user_id', Auth::id())->with('items.product')->get();
 
-        foreach ($orders as $order) {
-            foreach ($order->items as $item) {
-                dump($item->product->product_title);
-            }
-        }
-
         return view('admin.order.index', ['orders' => $orders]);
     }
 
@@ -71,6 +65,12 @@ class OrderController extends Controller
 
         return redirect()->back()->with('order-successful', 'The order has been successfully done!');
 
+    }
+
+    public function view($id){
+        $order = Order::where('id', $id)->where('user_id', Auth::id())->with('items.product')->firstOrFail();
+
+        return view('admin.order.view', ['order' => $order]);
     }
 
 }
