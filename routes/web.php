@@ -33,6 +33,8 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/order/update/{id}', [OrderController::class, 'edit'])->name('order.edit');
     Route::put('/order/update/{id}', [OrderController::class, 'update'])->name('order.update');
 
+    Route::get('/order/invoice/{id}', [OrderController::class, 'invoice'])->name('invoice');
+
 
 });
 

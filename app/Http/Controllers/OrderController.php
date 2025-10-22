@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class OrderController extends Controller
 {
@@ -101,5 +102,12 @@ class OrderController extends Controller
 
         return redirect()->back()->with('order-update', 'The order has been updated successfully!');
     }
+
+    public function invoice($id){
+        $order = Order::where('id', $id)->where('user_id', Auth::id())->with('items.product')->firstOrFail();
+        $pdf = Pdf::loadView('admin.order.invoice', ['order' => $order]);
+        return $pdf->download('invoice.pdf');
+    }
+
 
 }

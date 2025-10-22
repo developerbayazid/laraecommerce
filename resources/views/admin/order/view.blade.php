@@ -62,7 +62,7 @@
 
             <div class="card-footer bg-light text-end">
                 <a href="{{ route('order.edit', $order->id) }}" class="btn btn-outline-secondary btn-sm">Edit Details</a>
-                <a href="" class="btn btn-primary btn-sm">Download Invoice</a>
+                <a href="{{ route('invoice', $order->id) }}" class="btn btn-primary btn-sm">Download Invoice</a>
             </div>
         </div>
 
