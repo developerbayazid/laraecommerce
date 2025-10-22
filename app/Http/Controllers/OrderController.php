@@ -35,6 +35,67 @@ class OrderController extends Controller
             "total"          => 'required'
         ]);
 
+        if ($request->payment_method === 'stripe') {
+            \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
+            try {
+                $charge = \Stripe\Charge::create([
+                    'amount' => $validated['total'] * 100,
+                    'currency' => 'usd',
+                    'source' => $request->stripeToken,
+                    'description' => 'Order Payment for ' . $validated['email'],
+                ]);
+            } catch (\Exception $e) {
+                return back()->withErrors(['payment_error' => $e->getMessage()]);
+            }
+
+            if ($charge->status === 'succeeded') {
+
+                $order = new Order();
+
+                $order->user_id        = Auth::id();
+                $order->first_name     = $validated['first_name'];
+                $order->last_name      = $validated['last_name'];
+                $order->email          = $validated['email'];
+                $order->phone          = $validated['phone'];
+                $order->address        = $validated['address'];
+                $order->city           = $validated['city'];
+                $order->zip            = $validated['zip'];
+                $order->payment_method = 'stripe';
+                $order->total          = $validated['total'];
+                $order->status         = 'payment_received';
+
+                // $order->transaction_id = $charge->id;
+                $order->save();
+
+                // Store items
+                $carts = Cart::where('user_id', Auth::id())->get();
+                foreach ($carts as $cart) {
+                    OrderItems::create([
+                        'order_id'   => $order->id,
+                        'product_id' => $cart->product->id,
+                        'quantity'   => $cart->quantity,
+                        'price'      => $cart->product->product_price,
+                    ]);
+                }
+
+                $carts = Cart::where('user_id', Auth::id())->get();
+
+
+                foreach ($carts as $product) {
+                    $item             = new OrderItems();
+                    $item->order_id   = $order->id;
+                    $item->product_id = $product->product->id;
+                    $item->price      = $product->product->product_price;
+                    $item->save();
+                }
+
+                Cart::where('user_id', Auth::id())->delete();
+
+                return redirect()->back()->with('order-successful', 'The order has been successfully done!');
+            }
+        }
+
+
         $order = new Order();
 
         $order->user_id        = Auth::id();
@@ -55,10 +116,10 @@ class OrderController extends Controller
 
 
         foreach ($carts as $product) {
-            $item = new OrderItems();
-            $item->order_id = $order->id;
+            $item             = new OrderItems();
+            $item->order_id   = $order->id;
             $item->product_id = $product->product->id;
-            $item->price = $product->product->product_price;
+            $item->price      = $product->product->product_price;
             $item->save();
         }
 
