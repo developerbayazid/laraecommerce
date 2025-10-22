@@ -1,3 +1,5 @@
+<base href="/public"/>
+
 <!DOCTYPE html>
 <html>
   <head>

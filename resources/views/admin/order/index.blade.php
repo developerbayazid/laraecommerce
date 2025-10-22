@@ -33,10 +33,10 @@
                         <td>{{ $order->zip }}</td>
                         <td>{{ $order->payment_method }}</td>
                         <td>${{ $order->total }}</td>
-                        <td style="{{ $order->status === 'pending' ? 'color: #21DDFF' : '' }}">{{ $order->status }}</td>
+                        <td style="{{ $order->status === 'pending' ? 'color: #21DDFF' : '' }} {{ $order->status === 'completed' ? 'color: green' : '' }}">{{ $order->status }}</td>
                         <td>
                             <a href="{{ route('order.view', $order->id) }}" class="btn btn-success">View</a>
-                            <a href="" class="btn btn-warning">Edit</a>
+                            <a href="{{ route('order.edit', $order->id) }}" class="btn btn-warning">Update</a>
                             <a href="{{ route('order.destroy', $order->id) }}" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>

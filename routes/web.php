@@ -30,6 +30,8 @@ Route::middleware(['auth', 'verified'])->group(function(){
 
     Route::get('/order/{id}', [OrderController::class, 'view'])->name('order.view');
     Route::get('/order/delete/{id}', [OrderController::class, 'destroy'])->name('order.destroy');
+    Route::get('/order/update/{id}', [OrderController::class, 'edit'])->name('order.edit');
+    Route::put('/order/update/{id}', [OrderController::class, 'update'])->name('order.update');
 
 
 });

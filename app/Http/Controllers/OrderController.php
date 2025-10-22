@@ -79,4 +79,27 @@ class OrderController extends Controller
         return redirect()->back()->with('delete-order', 'The order has been deleted successfully!');
     }
 
+    public function edit($id){
+        $order = Order::where('id', $id)->where('user_id', Auth::id())->with('items.product')->firstOrFail();
+
+        return view('admin.order.update', ['order' => $order]);
+    }
+
+    public function update(Request $request, $id){
+        $order = Order::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+        $validated = $request->validate([
+            'first_name' => 'required|string',
+            'last_name'  => 'required|string',
+            'phone'      => 'required',
+            'email'      => 'required|email',
+            'status'     => 'required',
+            'address'    => 'required',
+            'total'      => 'required',
+        ]);
+
+        $order->update($validated);
+
+        return redirect()->back()->with('order-update', 'The order has been updated successfully!');
+    }
+
 }

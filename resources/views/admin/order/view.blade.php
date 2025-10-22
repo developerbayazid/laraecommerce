@@ -14,6 +14,13 @@
             </div>
 
             <div class="card-body">
+                <div class="pb-4">
+                    <p><strong>Name:</strong> {{ $order->first_name . ' ' . $order->last_name }}</p>
+                    <p><strong>Email:</strong> {{ $order->email }}</p>
+                    <p><strong>Phone:</strong> {{ $order->phone }}</p>
+                    <p><strong>Phone:</strong> {{ $order->address }}</p>
+                    <p><strong>City:</strong> {{ $order->city }}</p>
+                </div>
                 <h6 class="mb-3 text-muted">Order Items</h6>
                 <div class="table-responsive">
                     <table class="table table-bordered align-middle">
@@ -54,8 +61,8 @@
             </div>
 
             <div class="card-footer bg-light text-end">
-                <button class="btn btn-outline-secondary btn-sm">Edit Details</button>
-                <button class="btn btn-primary btn-sm">Download Invoice</button>
+                <a href="{{ route('order.edit', $order->id) }}" class="btn btn-outline-secondary btn-sm">Edit Details</a>
+                <a href="" class="btn btn-primary btn-sm">Download Invoice</a>
             </div>
         </div>
 
